@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gredafela - Admin Panel</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+
+    <style>
+      /* CSS KHUSUS MODAL */
+      .modal-bg {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(240, 230, 245, 0.7);
+        backdrop-filter: blur(3px);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .modal-bg.active {
+        display: flex;
+      }
+      .modal {
+        background: white;
+        border: 0.5px solid var(--dream-border-mid);
+        border-radius: 16px;
+        padding: 24px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 10px 40px rgba(58, 45, 74, 0.08);
+      }
+      .action-card {
+        background: white;
+        border: 0.5px solid var(--dream-border);
+        border-radius: 12px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .action-card:hover {
+        background: var(--dream-lavender-light);
+        border-color: var(--dream-lavender);
+      }
+      textarea.form-input {
+        font-family: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page">
+        <div class="nav">
+          <div class="nav-logo">gredafela <span>ocha.</span></div>
+          <div class="nav-links">
+            <a href="index.html" class="nav-link">home</a>
+            <a href="about.html" class="nav-link">about</a>
+            <a href="artifact.html" class="nav-link">artefak</a>
+            <a href="certificate.html" class="nav-link">credentials</a>
+          </div>
+          <div style="width: 10px"></div>
+        </div>
+
+        <div class="section">
+          <div class="admin-banner">
+            <span class="admin-badge">✦ admin mode</span>
+            <span
+              style="font-size: 12px; color: var(--dream-text-mid); flex: 1"
+            >
+              Hanya kamu yang bisa lihat & akses panel ini, Gredafela.
+            </span>
+            <i
+              class="ti ti-lock"
+              style="font-size: 14px; color: var(--dream-text-soft)"
+            ></i>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 12px;
+              margin-bottom: 2rem;
+            "
+          >
+            <div id="btn-add-artefak" class="action-card">
+              <i
+                class="ti ti-layout-grid"
+                style="font-size: 20px; color: var(--dream-text-mid)"
+              ></i>
+              <div>
+                <div
+                  style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: var(--dream-text);
+                  "
+                >
+                  add new artefak
+                </div>
+                <div style="font-size: 11px; color: var(--dream-text-soft)">
+                  project atau tulisan
+                </div>
+              </div>
+            </div>
+
+            <div id="btn-add-cert" class="action-card">
+              <i
+                class="ti ti-award"
+                style="font-size: 20px; color: var(--dream-text-mid)"
+              ></i>
+              <div>
+                <div
+                  style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: var(--dream-text);
+                  "
+                >
+                  add credential
+                </div>
+                <div style="font-size: 11px; color: var(--dream-text-soft)">
+                  upload sertifikat baru
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-bg" id="modal-artefak">
+      <div class="modal">
+        <div class="modal-title">
+          <span>add new artefak ✦</span>
+          <i
+            class="ti ti-x close-modal"
+            style="
+              font-size: 16px;
+              color: var(--dream-text-soft);
+              cursor: pointer;
+            "
+          ></i>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">judul</div>
+          <input
+            type="text"
+            id="art-judul"
+            class="form-input"
+            placeholder="e.g. RFID Parking Automation"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">kategori</div>
+          <div class="cat-chips">
+            <div class="cat-chip sel">ML / AI</div>
+            <div class="cat-chip">IoT</div>
+            <div class="cat-chip">networking</div>
+            <div class="cat-chip">mobile dev</div>
+            <div class="cat-chip">puisi</div>
+            <div class="cat-chip">cerpen</div>
+            <div class="cat-chip">novel</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">deskripsi singkat</div>
+          <textarea
+            class="form-input"
+            style="min-height: 52px; resize: none"
+            placeholder="Jelaskan proyeknya dalam 1–2 kalimat..."
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <div class="form-label">tahun</div>
+            <input type="text" class="form-input" placeholder="2025" />
+          </div>
+          <div class="form-group">
+            <div class="form-label">link (optional)</div>
+            <input type="text" class="form-input" placeholder="github / demo" />
+          </div>
+        </div>
+
+        <input type="file" id="art-file" style="display: none" />
+        <div
+          class="upload-zone"
+          onclick="document.getElementById('art-file').click()"
+          style="cursor: pointer"
+        >
+          <i
+            class="ti ti-upload"
+            style="
+              font-size: 18px;
+              display: block;
+              margin: 0 auto 6px;
+              color: var(--dream-text-mid);
+            "
+          ></i>
+          <div style="color: var(--dream-text-mid)">
+            klik untuk pilih gambar / file tulisan
+          </div>
+          <div id="file-name-display" style="margin-top: 3px; font-size: 10px">
+            png, jpg, pdf, docx, txt
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 16px">
+          <button
+            class="btn-ghost close-modal-btn"
+            style="padding: 8px 20px; font-size: 12px"
+          >
+            batal
+          </button>
+          <button
+            id="btn-publish-artefak"
+            class="btn-dream"
+            style="
+              padding: 8px 20px;
+              font-size: 12px;
+              border: none;
+              background: #3a2d4a;
+              color: white;
+            "
+          >
+            publish ✦
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-bg" id="modal-cert">
+      <div class="modal">
+        <div class="modal-title">
+          <span>add new credential ✦</span>
+          <i
+            class="ti ti-x close-modal"
+            style="
+              font-size: 16px;
+              color: var(--dream-text-soft);
+              cursor: pointer;
+            "
+          ></i>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">judul sertifikat</div>
+          <input
+            type="text"
+            id="cert-judul"
+            class="form-input"
+            placeholder="e.g. HCIA-AI V3.5"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">penerbit (issuer)</div>
+          <input
+            type="text"
+            id="cert-issuer"
+            class="form-input"
+            placeholder="e.g. Huawei Talent"
+          />
+        </div>
+
+        <input
+          type="file"
+          id="cert-file"
+          style="display: none"
+          accept="image/png, image/jpeg, application/pdf"
+        />
+        <div
+          class="upload-zone"
+          onclick="document.getElementById('cert-file').click()"
+          style="cursor: pointer"
+        >
+          <i
+            class="ti ti-upload"
+            style="
+              font-size: 18px;
+              display: block;
+              margin: 0 auto 6px;
+              color: var(--dream-text-mid);
+            "
+          ></i>
+          <div style="color: var(--dream-text-mid)">
+            klik untuk pilih gambar sertifikat
+          </div>
+          <div id="cert-file-name" style="margin-top: 3px; font-size: 10px">
+            png, jpg, pdf
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 16px">
+          <button
+            class="btn-ghost close-modal-btn"
+            style="padding: 8px 20px; font-size: 12px"
+          >
+            batal
+          </button>
+          <button
+            id="btn-publish-cert"
+            class="btn-dream"
+            style="
+              padding: 8px 20px;
+              font-size: 12px;
+              border: none;
+              background: #3a2d4a;
+              color: white;
+            "
+          >
+            publish ✦
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
